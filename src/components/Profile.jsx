@@ -10,7 +10,7 @@ function Profile(){
     <>
     <Card className='profileCard' style={{ width: '18rem' }}>
       <div id="profileTop">
-      <Card.Header></Card.Header>
+      <Card.Header id="header-top"></Card.Header>
     <Image id="profilePic" variant="top" src="https://c8.alamy.com/comp/P9MYWR/man-avatar-profile-P9MYWR.jpg" roundedCircle/>
     <Card.Body>
       <Card.Title id="cardTitle">Bob</Card.Title>

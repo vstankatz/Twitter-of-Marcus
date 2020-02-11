@@ -4,13 +4,18 @@
 #profilePic {
   height: 150px;
   width: 150px;
+  top: 10px;
+  position: absolute;
 }
 .feedImage {
   height: 75px;
   width: 75px;
   float: left;
 }
-
+#header-top {
+  background-color: black;
+  height: 100px;
+}
 #header {
   margin-bottom: 10px;
 }
