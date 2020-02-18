@@ -9,7 +9,7 @@ function TweetForm(props){
 
   function handleTweetFormSubmission(event) {
     event.preventDefault();
-    props.onTweetCreation({author: _author.value, body: _body.value, id: v4()});
+    props.onTweetCreation({author: _author.value, body: _body.value, count:0, id: v4()});
     _author.value = '';
     _body.value = '';
   }
@@ -26,7 +26,7 @@ function TweetForm(props){
         <Form.Label>Body</Form.Label>
         <Form.Control as="textarea" id='body' ref={(input) => {_body = input;}} />
       </Form.Group>
-      <button type='submit'>Tweet!</button>
+      <Button variant="info" type='submit'>Tweet!</Button>
     </Form>
 
   );

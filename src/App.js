@@ -20,14 +20,26 @@ class App extends React.Component {
 
     };
     this.handleAddingNewTweetToList = this.handleAddingNewTweetToList.bind(this);
+    this.changeLikes = this.changeLikes.bind(this);
   }
 
   handleAddingNewTweetToList(newTweet){
     var newMasterTweetList = this.state.masterTweetList.slice();
     newMasterTweetList.push(newTweet);
     this.setState({masterTweetList: newMasterTweetList});
-
   }
+
+  changeLikes(id, modifier){
+    const newMasterTweetList = this.state.masterTweetList.slice();
+    const updatedMasterTweetList = newMasterTweetList.map(t => {
+      if (t.id === id) t.count += modifier;
+      return t;
+    });
+    this.setState({ masterTweetList: updatedMasterTweetList})
+  }
+
+
+
   render(){
   return (
     <div>
@@ -36,7 +48,7 @@ class App extends React.Component {
     <Container>
     <Row>
     <Col md="auto"><Profile/></Col>
-    <Col md="auto"><TweetControl onTweetCreation={this.handleAddingNewTweetToList} /><Feed  feed={this.state.masterTweetList} /></Col>
+    <Col md="auto"><TweetControl onTweetCreation={this.handleAddingNewTweetToList} /><Feed  feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})} changeLikes={this.changeLikes} /></Col>
     <Col md="auto"><Suggestions/></Col>
 
     </Row>

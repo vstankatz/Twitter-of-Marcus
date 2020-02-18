@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListGroup, Image }from 'react-bootstrap';
+import {ListGroup, Image, Button }from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 class Tweet extends React.Component {
@@ -10,40 +10,36 @@ class Tweet extends React.Component {
 
       count: 0
     }
-    this.incrementLikes = this.incrementLikes.bind(this)
+    this.incrementLikes = this.incrementLikes.bind(this);
+    this.decrementLikes = this.decrementLikes.bind(this);
+  };
 
-    };
-
-    incrementLikes = () => {
-      let newCount = this.state.count +1
-      this.setState({ count: newCount})
-
-    }
-
-    decrementLikes = () => {
-      let newCount = this.state.count -1
-      this.setState({ count: newCount})
-
-    }
-
-    render () {
-      return(
-        <div>
-          <ListGroup.Item>
-            <Image className='feedImage' src="https://www.netactivity.us/backup2019/wp-content/uploads/2018/08/Network-Profile.png"></Image>
-            <h5>{this.props.author}</h5>
-            <p>{this.props.body}</p>
-            <p> Number of likes: {this.state.count}</p>
-            <button onClick={this.incrementLikes}>Vote Up</button>
-            <button onClick={this.decrementLikes}>Vote Down</button>
-          </ListGroup.Item>
-        </div>
-      )
-    }
+  incrementLikes() {
+    this.props.changeLikes(this.props.id, 1);
   }
 
-  Tweet.propTypes = {
-    author: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired
+  decrementLikes() {
+    this.props.changeLikes(this.props.id, -1);
   }
-  export default Tweet;
+
+  render () {
+    return(
+      <div>
+      <ListGroup.Item>
+      <Image className='feedImage' src="https://www.netactivity.us/backup2019/wp-content/uploads/2018/08/Network-Profile.png"></Image>
+      <h5>{this.props.author}</h5>
+      <p>{this.props.body}</p>
+      <p> Number of likes: {this.props.count}</p>
+      <Button variant="outline-success" onClick={this.incrementLikes}>Vote Up</Button>
+      <Button variant="outline-danger" onClick={this.decrementLikes}>Vote Down</Button>
+      </ListGroup.Item>
+      </div>
+    )
+  }
+}
+
+Tweet.propTypes = {
+  author: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired
+}
+export default Tweet;
