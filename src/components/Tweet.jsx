@@ -20,6 +20,12 @@ class Tweet extends React.Component {
 
     }
 
+    decrementLikes = () => {
+      let newCount = this.state.count -1
+      this.setState({ count: newCount})
+
+    }
+
     render () {
       return(
         <div>
@@ -28,7 +34,8 @@ class Tweet extends React.Component {
             <h5>{this.props.author}</h5>
             <p>{this.props.body}</p>
             <p> Number of likes: {this.state.count}</p>
-            <button onClick={this.incrementLikes}>Click Me</button>
+            <button onClick={this.incrementLikes}>Vote Up</button>
+            <button onClick={this.decrementLikes}>Vote Down</button>
           </ListGroup.Item>
         </div>
       )
