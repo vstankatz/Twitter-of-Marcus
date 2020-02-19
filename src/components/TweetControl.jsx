@@ -14,7 +14,6 @@ class TweetControl extends React.Component {
 
   handleCreateNewTweet(){
     this.setState({formVisibleOnPage: true});
-
   }
 
   render(){

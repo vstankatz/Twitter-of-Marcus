@@ -1,6 +1,7 @@
 import React from 'react';
 import {ListGroup, Image, Button }from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 class Tweet extends React.Component {
 
@@ -22,6 +23,7 @@ class Tweet extends React.Component {
     this.props.changeLikes(this.props.id, -1);
   }
 
+
   render () {
     return(
       <div>
@@ -30,6 +32,7 @@ class Tweet extends React.Component {
       <h5>{this.props.author}</h5>
       <p>{this.props.body}</p>
       <p> Number of likes: {this.props.count}</p>
+      <p>Uploaded at: {this.props.formattedWaitTime}</p>
       <Button variant="outline-success" onClick={this.incrementLikes}>Vote Up</Button>
       <Button variant="outline-danger" onClick={this.decrementLikes}>Vote Down</Button>
       </ListGroup.Item>
@@ -40,6 +43,7 @@ class Tweet extends React.Component {
 
 Tweet.propTypes = {
   author: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  formattedWaitTime: PropTypes.string.isRequired
 }
 export default Tweet;

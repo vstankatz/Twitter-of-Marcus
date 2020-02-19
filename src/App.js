@@ -7,6 +7,9 @@ import { Row, Col, Container } from 'react-bootstrap';
 import Suggestions from "./components/Suggestions";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Moment from 'moment';
+import {Switch, Route} from 'react-router-dom';
+import Test from './components/Test';
 
 
 
@@ -25,6 +28,7 @@ class App extends React.Component {
 
   handleAddingNewTweetToList(newTweet){
     var newMasterTweetList = this.state.masterTweetList.slice();
+    newTweet.formattedWaitTime = (newTweet.timeOpen).fromNow(true)
     newMasterTweetList.push(newTweet);
     this.setState({masterTweetList: newMasterTweetList});
   }
@@ -38,7 +42,28 @@ class App extends React.Component {
     this.setState({ masterTweetList: updatedMasterTweetList})
   }
 
+  componentDidMount = () => {
+    this.waitTimeUpdateTimer = setInterval(() =>
+    this.updateTweetElapsedWaitTime(),
+    5000
+  );
+  console.log('did mount')
+  }
 
+
+  updateTweetElapsedWaitTime = () => {
+    console.log('updated')
+    let newMasterTweetList = this.state.masterTweetList.slice();
+    newMasterTweetList.forEach((tweet) =>
+      tweet.formattedWaitTime = (tweet.timeOpen).fromNow(true)
+    );
+    this.setState({masterTweetList: newMasterTweetList})
+  }
+
+  componentWillUnmount = () => {
+    console.log('unmount')
+    clearInterval(this.waitTimeUpdateTimer);
+  }
 
   render(){
   return (
@@ -50,7 +75,11 @@ class App extends React.Component {
     <Col md="auto"><Profile/></Col>
     <Col md="auto"><TweetControl onTweetCreation={this.handleAddingNewTweetToList} /><Feed  feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})} changeLikes={this.changeLikes} /></Col>
     <Col md="auto"><Suggestions/></Col>
+    <Switch>
+    <Route exact path='/' render={()=> (<Feed feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})}/>)}/>
 
+    <Route path='/test' component={Test}/>
+    </Switch>
     </Row>
     </Container>
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
 import { Form, FormControl, Button } from 'react-bootstrap';
+import Moment from 'moment';
 
 function TweetForm(props){
   let _author = null;
@@ -9,7 +10,8 @@ function TweetForm(props){
 
   function handleTweetFormSubmission(event) {
     event.preventDefault();
-    props.onTweetCreation({author: _author.value, body: _body.value, count:0, id: v4()});
+    props.onTweetCreation({author: _author.value, body: _body.value, count:0, id: v4(), timeOpen: new Moment()});
+
     _author.value = '';
     _body.value = '';
   }

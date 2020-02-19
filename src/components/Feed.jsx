@@ -17,6 +17,7 @@ function Feed(props){
             changeLikes={props.changeLikes}
             id={tweet.id}
             count={tweet.count}
+            formattedWaitTime={tweet.formattedWaitTime}
             key={tweet.id}/>
           )}
           </ListGroup>
