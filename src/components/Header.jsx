@@ -13,7 +13,7 @@ function Header(){
     <Navbar bg="dark" variant="dark" id="header">
     <Navbar.Brand href="#home">Tweetus</Navbar.Brand>
     <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#/">Home</Nav.Link>
       <Nav.Link href="#features">Tweetums</Nav.Link>
       <Nav.Link href="#pricing">Complaints</Nav.Link>
       <Nav.Link href='#test'>Test</Nav.Link>

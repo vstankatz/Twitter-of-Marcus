@@ -71,16 +71,25 @@ class App extends React.Component {
 
     <Header/>
     <Container>
-    <Row>
-    <Col md="auto"><Profile/></Col>
-    <Col md="auto"><TweetControl onTweetCreation={this.handleAddingNewTweetToList} /><Feed  feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})} changeLikes={this.changeLikes} /></Col>
-    <Col md="auto"><Suggestions/></Col>
+
+
+
+
     <Switch>
-    <Route exact path='/' render={()=> (<Feed feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})}/>)}/>
+    <Route exact path='/'
+    render={() =>
+      <Row>
+      <Col md="auto"><Profile/></Col>
+      <Col md="auto"><TweetControl onTweetCreation={this.handleAddingNewTweetToList} /><Feed  feed={this.state.masterTweetList.sort(function(a,b){return b.count - a.count})} changeLikes={this.changeLikes} /></Col>
+      <Col md="auto"><Suggestions/></Col>
+      </Row>
+        }/>
+
+
 
     <Route path='/test' component={Test}/>
     </Switch>
-    </Row>
+
     </Container>
     </div>
   );
